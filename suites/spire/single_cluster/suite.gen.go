@@ -25,7 +25,7 @@ func (s *Suite) SetupSuite() {
 	s.T().Cleanup(func() {
 		r.Run(`kubectl delete crd clusterspiffeids.spire.spiffe.io` + "\n" + `kubectl delete crd clusterfederatedtrustdomains.spire.spiffe.io` + "\n" + `kubectl delete validatingwebhookconfiguration.admissionregistration.k8s.io/spire-controller-manager-webhook` + "\n" + `kubectl delete ns spire`)
 	})
-	r.Run(`kubectl apply -k https://github.com/d-uzlov/deployments-k8s/examples/spire/single_cluster?ref=f3d8e97881a29f22b150bfcd6233647c5f96ee68`)
+	r.Run(`kubectl apply -k https://github.com/d-uzlov/deployments-k8s/examples/spire/single_cluster?ref=a54ae4d4a3f823c30a896ed64e82e9f963a0d12f`)
 	r.Run(`kubectl wait -n spire --timeout=1m --for=condition=ready pod -l app=spire-server`)
 	r.Run(`kubectl wait -n spire --timeout=1m --for=condition=ready pod -l app=spire-agent`)
 	r.Run(`kubectl apply -f https://raw.githubusercontent.com/d-uzlov/deployments-k8s/4a0ec48044729b965bd0a6f161f5fbf2aaf5e0b4/examples/spire/single_cluster/clusterspiffeid-template.yaml`)
